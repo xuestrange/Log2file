@@ -1,0 +1,7 @@
+name = "Log2file"
+uuid = "7ed888ee-9547-434a-a91c-bcfd4b31a208"
+authors = ["xuestrange <xjz1cumt@163.com>"]
+version = "0.1.0"
+
+[deps]
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
