@@ -54,7 +54,7 @@ macro log(messages...)
     global log_file
     quote
         open($log_file, "a") do io
-            write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ",  reduce(*, string.($(esc(messages...)))), "\n")
+            write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ",  reduce(*, string.($(esc(messages...))) .* " "), "\n")
         end
     end
 end
