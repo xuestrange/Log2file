@@ -1,23 +1,27 @@
+_lline = 40
+_log_file = "C:/"
 """
-Create a global variable named `log_file = path`
+Initialize you log file. Usually used at the beginning of you programs, the macro will create a file with one line indicating the beginning of the program.
+"""
+macro init_log(title = "PROGRAM BEGINS")
+    global _log_file
+    quote
+        open($_log_file, "w") do io
+            write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ",rpad(lpad($title, floor(Int64, _lline / 2 + length($title) / 2), "="), _lline, "="), "\n")
+        end
+    end
+end
+"""
+Create a global variable named `_log_file= path`
 # Arguments
 + `path`: string
 """
 function set_log_file!(path)
-    global log_file = path
-    @info "A global variable is created: log_file = \"$log_file\""
+    global _log_file= path
+    @info "A global variable is created: _log_file= \"$_log_file\""
 end
-
-"""
-Create a line "============================" used to seperated blocks
-"""
-macro line()
-    quote
-        global log_file
-        open($log_file, "a") do io
-            write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " =======================\n")
-        end
-    end
+function set_lline!(l::Int64)
+    global _lline = l
 end
 
 """
@@ -25,35 +29,25 @@ Create a title line into your log file
 # Arguments
 - `title`: string
 """
-macro title(title)
-    global log_file
+macro section(title)
+    global _log_file
     quote
-        open($log_file, "a") do io
-            write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", $title, "\n")
+        open($_log_file, "a") do io
+            write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", rpad(lpad($title, floor(Int64, _lline / 2 + length($title) / 2), "="), _lline, "="), "\n")
         end
     end
 end
 
-"""
-Initialize you log file. Usually used at the beginning of you programs, the macro will create a file with one line indicating the beginning of the program.
-"""
-macro init_log()
-    global log_file
-    quote
-        open($log_file, "w") do io
-            write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " Program begins", "\n")
-        end
-    end
-end
+
 """
 Add messages to your log file
 # Arguments
 - `messages`: many strings
 """
 macro log(messages...)
-    global log_file
+    global _log_file
     quote
-        open($log_file, "a") do io
+        open($_log_file, "a") do io
             write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ",  reduce(*, string.($(esc(messages...))) .* " "), "\n")
         end
     end

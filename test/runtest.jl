@@ -1,10 +1,10 @@
 using Log2file
 
+set_lline!(45)
 set_log_file!("./test/test.txt")
 
 @init_log
-@line
-@title "A title"
+@section "Step 1: Data Generation"
 
 a = 1
 b = "a"
