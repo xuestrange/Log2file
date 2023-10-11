@@ -1,6 +1,5 @@
 # Log2file
-
-[![Build Status](https://github.com/xuestrange/Log2file.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/xuestrange/Log2file.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![CI](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml/badge.svg?branch=main&event=status)](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml)
 [![CI](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml/badge.svg)](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml)
 
 
