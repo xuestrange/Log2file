@@ -1,7 +1,6 @@
 # Log2file
 
-[![Build Status](https://github.com/xuestrange/Log2file.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/xuestrange/Log2file.jl/actions/workflows/CI.yml?query=branch%3Amaster)
-[![Coverage](https://codecov.io/gh/xuestrange/Log2file.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/xuestrange/Log2file.jl)
+[![Build Status](https://github.com/xuestrange/Log2file.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/xuestrange/Log2file.jl/actions/workflows/CI.yml?query=branch%3Amain)
 [![CI](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml/badge.svg)](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml)
 
 
