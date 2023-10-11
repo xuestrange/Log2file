@@ -1,7 +1,7 @@
 using Log2file
 using Test
 Log2file.set_line_length!(40)
-Log2file.set_logfile_path!("test", "test.txt")
+Log2file.set_logfile_path!("test.txt")
 function test_log2file()
 	@init_log
 	@section "Step 1: Data Generation"
