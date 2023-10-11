@@ -12,7 +12,7 @@ using Log2file
 # set the length of seperator line
 Log2file.set_line_length!(40)
 # set the relative directory logfile
-Log2file.set_logfile_path!("./test/test.txt")
+Log2file.set_logfile_path!("test", "test.txt")
 
 # create the th log file if not existed, otherwise, empty it; add a line of program begins
 @init_log
