@@ -1,8 +1,8 @@
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.9.2"
+julia_version = "1.9.3"
 manifest_format = "2.0"
-project_hash = "d7cd76e304b32b583eb96a7ac19153dc0f2d1730"
+project_hash = "e8e630fbfe93f9e61518922f98323a00060bce34"
 
 [[deps.Dates]]
 deps = ["Printf"]

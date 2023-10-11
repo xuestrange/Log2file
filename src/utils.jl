@@ -18,7 +18,7 @@ Create a global variable named `_LOGFILE_PATH= path`
 """
 function set_logfile_path!(path)
     global _LOGFILE_PATH= path
-    @info "A global variable is created: _LOGFILE_PATH = \"$_log_file\""
+    @info "A global variable is created: _LOGFILE_PATH = \"$_LOGFILE_PATH\""
 end
 function set_line_length!(l::Int64)
     global _LINE_LENGTH = l

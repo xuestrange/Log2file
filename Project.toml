@@ -1,7 +1,17 @@
 name = "Log2file"
-uuid = "7ed888ee-9547-434a-a91c-bcfd4b31a208"
-authors = ["xuestrange <xjz1cumt@163.com>"]
-version = "0.1.0"
+uuid = "9348bb98-452d-4fd0-bebd-231ec7952d68"
+authors = ["xuestrange <xjz1cumt@163.com> and contributors"]
+version = "1.0.0-DEV"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

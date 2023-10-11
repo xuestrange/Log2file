@@ -1,4 +1,9 @@
 # Log2file
+
+[![Build Status](https://github.com/xuestrange/Log2file.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/xuestrange/Log2file.jl/actions/workflows/CI.yml?query=branch%3Amaster)
+[![Coverage](https://codecov.io/gh/xuestrange/Log2file.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/xuestrange/Log2file.jl)
+
+
 A Julia package used to log(write) some messages with the timestamp instantly to a log file.
 
 ## Usage
