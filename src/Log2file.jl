@@ -1,6 +1,6 @@
 module Log2file
 using Dates
 log_file = ""
-export set_log_file!, set_lline!, @init_log, @section, @log, _log_file, _lline
+export @init_log, @section, @log, _LOGFILE_PATH, _LINE_LENGTH
 include("utils.jl")
 end # module Log2file
