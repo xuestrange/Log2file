@@ -4,6 +4,11 @@
 
 A Julia package used to log(write) some messages with the timestamp instantly to a log file.
 
+## Install
+```Julia
+# enter REPL, enter pkg mode
+pkg> add https://github.com/xuestrange/Log2file.git
+```
 ## Usage
 ``` Julia
 using Log2file
