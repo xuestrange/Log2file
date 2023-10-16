@@ -50,7 +50,7 @@ macro log(messages)
 	global _LOGFILE_PATH
 	quote
 		open($_LOGFILE_PATH, "a") do io
-			println(Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", $(esc(messages)), "\n")
+			println(Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", $(esc(messages)))
 			write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", $(esc(messages)), "\n")
 		end
 	end
