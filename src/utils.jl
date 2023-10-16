@@ -6,7 +6,7 @@ Initialize you log file. Usually used at the beginning of you programs, the macr
 macro init_log(title = "PROGRAM BEGINS")
 	global _LOGFILE_PATH
 	quote
-		println(Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", rpad(lpad($title, floor(Int64, _LINE_LENGTH / 2 + length($title) / 2), "="), _LINE_LENGTH, "="), "\n")
+		println(Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", rpad(lpad($title, floor(Int64, _LINE_LENGTH / 2 + length($title) / 2), "="), _LINE_LENGTH, "="))
 		open($_LOGFILE_PATH, "w") do io
 			write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", rpad(lpad($title, floor(Int64, _LINE_LENGTH / 2 + length($title) / 2), "="), _LINE_LENGTH, "="), "\n")
 		end
@@ -34,7 +34,7 @@ Create a title line into your log file
 macro section(title)
 	global _LOGFILE_PATH
 	quote
-		println(Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", rpad(lpad($title, floor(Int64, _LINE_LENGTH / 2 + length($title) / 2), "="), _LINE_LENGTH, "="), "\n")
+		println(Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", rpad(lpad($title, floor(Int64, _LINE_LENGTH / 2 + length($title) / 2), "="), _LINE_LENGTH, "="))
 		open($_LOGFILE_PATH, "a") do io
 			write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", rpad(lpad($title, floor(Int64, _LINE_LENGTH / 2 + length($title) / 2), "="), _LINE_LENGTH, "="), "\n")
 		end
@@ -70,10 +70,10 @@ macro logm(messages...)
 			for m in $(esc.(messages)...)
                 if iter == 1
 
-                    println(Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ",  m, "\n")
+                    println(Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ",  m)
                     write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ",  m, "\n")
                 else
-                    println(" "^20,  m, "\n")
+                    println(" "^20,  m)
                     write(io, " "^20,  m, "\n")
                 end
                 iter += 1
