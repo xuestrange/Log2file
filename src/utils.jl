@@ -1,5 +1,5 @@
 _LINE_LENGTH = 40
-_LOGFILE_PATH = joinpath(pwd(), "test.txt")
+_LOGFILE_PATH = ""
 _APPEND = true
 """
 Initialize you log file. Usually used at the beginning of you programs, the macro will create a file with one line indicating the beginning of the program.
