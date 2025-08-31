@@ -1,5 +1,5 @@
 # Log2file
-[![CI](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml/badge.svg?branch=main&event=status)](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml)
+[![CI](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml/badge.svg)](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml)
 
 
 A Julia package used to log(write) some messages with the timestamp instantly to a log file.
