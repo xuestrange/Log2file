@@ -21,6 +21,10 @@ end
 Create a global variable named `_LOGFILE_PATH= path`
 # Arguments
 + `path`: string
+# Examples
+If you set `Log2file.set_logfile_path!("test", "records.txt")`, then the log file directory will be "pwd()/test/records.txt"
+# Warn
+Don't use it like this "Log2file.set_logfile_path!("./test/records.txt")", because Unix-like and Windows systems differ in the format of path.
 """
 function set_logfile_path!(path...)
 	global _LOGFILE_PATH = joinpath(pwd(), path...)
