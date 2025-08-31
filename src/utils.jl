@@ -1,6 +1,6 @@
-_LINE_LENGTH = 40
-_LOGFILE_PATH = ""
-_APPEND = true
+global _LINE_LENGTH = 40
+global _LOGFILE_PATH = ""
+global _APPEND = true
 """
 Initialize you log file. Usually used at the beginning of you programs, the macro will create a file with one line indicating the beginning of the program.
 ## Arguments
