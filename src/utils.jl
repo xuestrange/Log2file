@@ -34,9 +34,9 @@ function set_line_length!(l::Int64)
 	global _LINE_LENGTH = l
 	@info "Line Length is set to: _LINE_LENGTH = \"$_LINE_LENGTH\""
 end
-"
+"""
 Initialize the write mode for the log file, if `l` is true, `append mode`, else, "overwrite mode"
-"
+"""
 function set_append_mode!(l::Bool)
 	global _APPEND = l == true ? true : false
 	msg = _APPEND == true ? "append" : "overwrite"
