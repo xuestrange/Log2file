@@ -28,7 +28,7 @@ Don't use it like this "Log2file.set_logfile_path!("./test/records.txt")", becau
 """
 function set_logfile_path!(path...)
 	global _LOGFILE_PATH = joinpath(pwd(), path...)
-	@info "A global variable is created: _LOGFILE_PATH = \"$_LOGFILE_PATH\""
+	@info "Log file path: _LOGFILE_PATH = \"$_LOGFILE_PATH\""
 end
 function set_line_length!(l::Int64)
 	global _LINE_LENGTH = l
