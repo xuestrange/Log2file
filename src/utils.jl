@@ -1,13 +1,15 @@
 _LINE_LENGTH = 40
 _LOGFILE_PATH = joinpath(pwd(), "test.txt")
+_APPEND = true
 """
 Initialize you log file. Usually used at the beginning of you programs, the macro will create a file with one line indicating the beginning of the program.
 ## Arguments
 `append`: bool, if true, then overwrite the file, append otherwise.
 """
-macro init_log(title = "PROGRAM BEGINS", append = true)
+macro init_log(title = "PROGRAM BEGINS")
 	global _LOGFILE_PATH
-	mode = append ? "a" : "w"
+	global _APPEND
+	mode = _APPEND ? "a" : "w"
 	quote
 		println(Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", rpad(lpad($title, floor(Int64, _LINE_LENGTH / 2 + length($title) / 2), "="), _LINE_LENGTH, "="))
 		
