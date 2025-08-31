@@ -12,7 +12,6 @@ macro init_log(title = "PROGRAM BEGINS")
 	mode = _APPEND ? "a" : "w"
 	quote
 		println(Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", rpad(lpad($title, floor(Int64, _LINE_LENGTH / 2 + length($title) / 2), "="), _LINE_LENGTH, "="))
-		
 		open($_LOGFILE_PATH, $mode) do io
 			write(io, Dates.format(now(), "yyyy-mm-dd HH:MM:SS"), " ", rpad(lpad($title, floor(Int64, _LINE_LENGTH / 2 + length($title) / 2), "="), _LINE_LENGTH, "="), "\n")
 		end
