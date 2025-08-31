@@ -15,7 +15,9 @@ using Log2file
 # set the length of seperator line
 Log2file.set_line_length!(40)
 # set the relative directory logfile
-Log2file.set_logfile_path!("test", "test.txt")
+Log2file.set_logfile_path!("log.txt")
+# set write mode: append (true) or overwrite (false)
+Log2file.set_append_mode!(true)
 
 # create the th log file if not existed, otherwise, empty it; add a line of program begins
 @init_log
@@ -31,7 +33,7 @@ c = randn(4, 4)
 ```
 ## Output
 ``` Julia
-# those are written in file
+# those are written in file "log.txt"
 2023-10-16 12:02:34 =============PROGRAM BEGINS=============
 2023-10-16 12:02:34 ========Step 1: Data Generation=========
 2023-10-16 12:02:34 a = [1, 2, 3]
@@ -44,7 +46,7 @@ c = randn(4, 4)
 # those are shown in REPl
 [ Info: Precompiling Log2file [9348bb98-452d-4fd0-bebd-231ec7952d68]
 [ Info: Line Length is set to: _LINE_LENGTH = "40"
-[ Info: A global variable is created: _LOGFILE_PATH = "C:\Users\xue\Desktop\Log2file\test\test.txt"
+[ Info: Log file path: _LOGFILE_PATH = "C:\Users\xue\Desktop\Log2file\test\test.txt"
 2023-10-16 12:10:18 =============PROGRAM BEGINS=============
 2023-10-16 12:10:18 ========Step 1: Data Generation=========
 2023-10-16 12:10:18 a = [1, 2, 3]
