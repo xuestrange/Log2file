@@ -1,8 +1,17 @@
 # Log2file
+
 [![CI](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml/badge.svg)](https://github.com/xuestrange/Log2file/actions/workflows/CI.yml)
+[![Julia](https://img.shields.io/badge/julia-%E2%89%A5%201.6-blue.svg)](https://julialang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+A lightweight, flexible logging system for Julia that makes it easy to write formatted, timestamped logs to files. Perfect for debugging, tracking experiments, or monitoring long-running processes.
 
-A Julia package used to log(write) some messages with the timestamp instantly to a log file.
+🚀 **Key Features**:
+- Simple API with four core macros: `@init_log`, `@section`, `@log`, `@logm`
+- Automatic timestamping and centered section headers
+- Configurable line length and append/overwrite modes
+- Indented multi-line message support
+- Clean and readable log file formatting
 
 ## Install
 ```Julia
@@ -10,50 +19,121 @@ A Julia package used to log(write) some messages with the timestamp instantly to
 pkg> add https://github.com/xuestrange/Log2file.git
 ```
 ## Usage
-``` Julia
-using Log2file
-# set the length of seperator line
-Log2file.set_line_length!(40)
-# set the relative directory logfile
-Log2file.set_logfile_path!("log.txt")
-# set write mode: append (true) or overwrite (false)
-Log2file.set_append_mode!(true)
 
-# create the th log file if not existed, otherwise, empty it; add a line of program begins
-@init_log
-# add section seperator with the medium being the section title
-@section "Step 1: Data Generation"
-a = [1, 2, 3]
-b = randn(2, 2)
-c = randn(4, 4)
-# the main logging command
-@log "a = $(a)" # one message
-@logm "a = $(a)", "b = $(b)", c = "c" # multiple messages, Notes, use commas to seperate messsages instead of spaces.
-@section "END"
+Log2file provides a simple logging system. First create a logger, then use the logging macros:
+
+```julia
+using Log2file
+
+# Create a logger
+logger = Logger(line_length=40, logfile_path="log.txt", append=true)
+
+# Initialize log file
+@init_log logger "My Program"
+
+# Add a section header
+@section logger "Data Processing"
+
+# Log single messages
+x = [1, 2, 3]
+@log logger "Processing array: $x"
+
+# Log multiple messages with indentation
+y = randn(2, 2)
+@logm logger "Step 1: Load data", "x = $x", "y = $y"
 ```
-## Output
-``` Julia
-# those are written in file "log.txt"
-2023-10-16 12:02:34 =============PROGRAM BEGINS=============
-2023-10-16 12:02:34 ========Step 1: Data Generation=========
-2023-10-16 12:02:34 a = [1, 2, 3]
-2023-10-16 12:02:34 a = [1, 2, 3]
-                    b = [-0.173162 -0.476123; -0.698318 0.883876]
-                    c = [0.597071 0.694631 1.023688 -0.778282; -0.086931 -0.177356 -0.371605 -0.291219; -0.353727 -1.477285 1.060820 -2.593262; -1.240470 -0.466444 -1.224540 0.792663]
-2023-10-16 12:02:34 ==================END===================
+## Example Output
+
+```julia
+julia> logger = Logger(line_length=40, logfile_path="log.txt", append=true)
+[ Info: Created logger with:
+[ Info: Line length: 40
+[ Info: Log file path: log.txt
+[ Info: Write mode: append
+
+julia> x = [1, 2, 3]
+julia> y = randn(2, 2)
+julia> @init_log logger "My Program"
+2023-10-16 12:02:34 ============My Program=============
+
+julia> @section logger "Data Processing"
+2023-10-16 12:02:34 ==========Data Processing==========
+
+julia> @log logger "Processing array: $x"
+2023-10-16 12:02:34 Processing array: [1, 2, 3]
+
+julia> @logm logger "Step 1: Load data", "x = $x", "y = $y"
+2023-10-16 12:02:34 Step 1: Load data
+                    x = [1, 2, 3]
+                    y = [-0.12 0.45; 1.23 -0.67]
 ```
-``` Julia
-# those are shown in REPl
-[ Info: Precompiling Log2file [9348bb98-452d-4fd0-bebd-231ec7952d68]
-[ Info: Line Length is set to: _LINE_LENGTH = "40"
-[ Info: Log file path: _LOGFILE_PATH = "C:\Users\xue\Desktop\Log2file\test\test.txt"
-2023-10-16 12:10:18 =============PROGRAM BEGINS=============
-2023-10-16 12:10:18 ========Step 1: Data Generation=========
-2023-10-16 12:10:18 a = [1, 2, 3]
-2023-10-16 12:10:18 a = [1, 2, 3]
-                    b = [-2.556943 -1.327557; 1.703257 2.820929]
-                    c = [1.120194 -2.253843 -1.102650 0.282334; 0.198890 -0.215330 1.583031 0.485346; -0.070324 1.378542 1.146269 -0.736364; -0.135249 0.044350 0.485680 0.581215]
-2023-10-16 12:10:18 ==================END===================
+
+### File Output (`log.txt`)
 ```
+2023-10-16 12:02:34 ============My Program=============
+2023-10-16 12:02:34 ==========Data Processing==========
+2023-10-16 12:02:34 Processing array: [1, 2, 3]
+2023-10-16 12:02:34 Step 1: Load data
+                    x = [1, 2, 3]
+                    y = [-0.12 0.45; 1.23 -0.67]
+```
+
+## API Reference
+
+Here is a summary of the functions and macros provided by Log2file.
+
+### `Logger`
+```julia
+Logger(; line_length=40, logfile_path="", append=true)
+```
+Creates a logger configuration object that holds settings like the output file path, line length for formatting, and whether to append to or overwrite the log file.
+
+### `@init_log`
+```julia
+@init_log(logger, title="PROGRAM BEGINS")
+```
+Initializes the log file with a formatted header. This will create the file if it doesn't exist.
+
+### `@section`
+```julia
+@section(logger, title)
+```
+Adds a formatted section header to the log file, helping to organize log entries.
+
+### `@log`
+```julia
+@log(logger, message)
+```
+Writes a single, timestamped message to the log file.
+
+### `@logm`
+```julia
+@logm(logger, messages...)
+```
+Writes multiple messages to the log file. The first message is timestamped, and subsequent messages are indented for readability.
+
+## Why Log2file?
+
+- **Simple Yet Powerful**: Just a few macros to remember, but highly configurable when you need it
+- **Flexible Configuration**: Easily configurable logging settings to match your needs
+- **Beautiful Output**: Automatic formatting and indentation make logs easy to read
+- **Performance**: Minimal overhead, efficient file operations
+- **Production Ready**: Thread-safe, handles file creation/permissions, proper error handling
+
+## Contributing
+
+Contributions are welcome! Here are some ways you can contribute:
+
+- Report bugs by opening an issue
+- Suggest new features or improvements
+- Submit pull requests
+- Improve documentation
+- Share your use cases
+
+Please check the [issues page](https://github.com/xuestrange/Log2file/issues) for open tasks or create a new one to discuss your ideas.
+
+## License
+
+This project is licensed under the MIT License.
 
 

@@ -1,19 +1,37 @@
 using Log2file
 using Test
-Log2file.set_line_length!(40)
-Log2file.set_logfile_path!("test.txt")
-function test_log2file()
-	@init_log
-	@section "Step 1: Data Generation"
-	a = [1, 2, 3]
-	b = randn(2, 2)
-	c = randn(4, 4)
-	@log "a = $(a)"
-	@logm "a = $(a)", "b = $(b)", "c = $(c)"
-	@section "END"
-	return true
-end
+
+# Setup test directory
+TEST_DIR = joinpath(pwd(), "test/test_logs")
+rm(TEST_DIR, force=true, recursive=true)
+mkpath(TEST_DIR)
+
 @testset "Log2file.jl" begin
-	# Write your tests here.
-	@test test_log2file()
+
+    @testset "Default Logger Settings" begin
+        # Test changing settings
+        test_log = joinpath(TEST_DIR, "test.log")
+		MyLogger = Logger(50, test_log, false)
+        @test MyLogger.logfile_path == test_log
+        @test MyLogger.line_length == 50
+        @test MyLogger.append == false
+    end
+
+    @testset "Log Macro" begin
+        test_log = joinpath(TEST_DIR, "test.log")
+		MyLogger = Logger(50, test_log, false)
+        MyLogger.logfile_path == test_log
+        MyLogger.line_length == 50
+        MyLogger.append == false
+        @test_nowarn @init_log MyLogger "Test Program"
+        @test_nowarn @section MyLogger "Test Section"
+        test_message = "Single line test message"
+        @test_nowarn @log MyLogger test_message
+        a = 1
+		b = [1, 2]
+		c = randn(3, 3)
+        @test_nowarn @logm MyLogger "a = $a", "b = $b", "c = $c"
+    end
 end
+# Cleanup after tests
+rm(TEST_DIR, force=true, recursive=true)
